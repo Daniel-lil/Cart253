@@ -21,7 +21,15 @@ function preload() {
 Description of setup
 */
 function setup() {
- background(255, 0, 0);
+
+createCanvas(500, 500);
+
+background(100, 0, 200);
+
+point(250,250);
+
+rect(100,100,300,300);
+
 }
 
 
