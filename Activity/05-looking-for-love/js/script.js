@@ -6,6 +6,8 @@ Daniel Little
 "use strict";
 
 let imgScary;
+let imgHeart;
+let imgBrokenHeart;
 
 let circle1 = {
   x: 0,
@@ -13,7 +15,7 @@ let circle1 = {
   size: 100,
   vx: 0,
   vy: 0,
-  speed: 5,
+  speed: 3,
   fill: {
     r: 244,
     g: 158,
@@ -39,6 +41,8 @@ let state = `title`; // can be: title, simulation, love & sadness
 
 function preload() {
   imgScary = loadImage ('assets/images/jumpScare.jpeg');
+  imgHeart = loadImage ('assets/images/heart.png');
+  imgBrokenHeart = loadImage ('assets/images/brokenHeart.png')
 }
 
 function setup() {
@@ -52,9 +56,9 @@ circle1.x = width/3;
 circle2.x = 2 * width/3;
 
 //start circles moving in a random direction
-circle1.vx= random(-circle1.speed, circle1.speed);
+circle1.vx= 0;
 circle2.vx= random(-circle2.speed, circle2.speed);
-circle1.vy= random(-circle1.speed, circle1.speed);
+circle1.vy= 0;
 circle2.vy= random(-circle2.speed, circle2.speed);
 }
 
@@ -82,7 +86,7 @@ function title(){
   push();
   textSize(150);
   textStyle(BOLD);
-  fill(200,10,60);
+  fill(255,15,35);
   textAlign(CENTER,CENTER);
   text(`love?`, width/2, height/2);
   pop();
@@ -99,16 +103,20 @@ checkForScare();
 
 function love(){
   push();
+  imageMode (CENTER)
+  image(imgHeart, 250,250,400,400);
   textSize(150);
   textStyle(BOLD);
-  fill(230,10,70);
+  fill(140,10,255);
   textAlign(CENTER,CENTER);
-  text(`love!`, width/2, height/2);
+  text(`love!`, width/2, height/2 - 25);
   pop();
 }
 
 function sadness(){
   push();
+  imageMode (CENTER)
+  image(imgBrokenHeart, 250,250,400,400);
   textSize(115);
   textStyle(BOLD);
   fill(25,50,255);
