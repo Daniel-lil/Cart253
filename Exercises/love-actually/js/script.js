@@ -40,7 +40,7 @@ let circle2 = {
 let state = `title`; // can be: title, simulation, love & sadness
 
 function preload() {
-  imgScary = loadImage ('assets/images/jumpScare.jpeg');
+  imgScary = loadImage ('assets/images/jumpScare.jpg');
   imgHeart = loadImage ('assets/images/heart.png');
   imgBrokenHeart = loadImage ('assets/images/brokenHeart.png')
 }
