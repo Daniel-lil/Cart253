@@ -14,6 +14,7 @@ let mercury;
 let jupiter;
 let neptune;
 let mars;
+let sun;
 
 //defining attributes for flying saucer
 
@@ -122,6 +123,7 @@ function preload() {
   jupiter = loadImage ('assets/images/jupiter.png')
   neptune = loadImage ('assets/images/neptune.png');
   mars = loadImage ('assets/images/mars.png')
+  sun = loadImage ('assets/images/sun.png')
 }
 
 /**
@@ -193,8 +195,8 @@ function displayStatic() {
   //display static
 
 for (let i = 0; i < 2000; i++) {
-  let x = random(0,width);
-  let y = random(0,height);
+  let x = random(0,750);
+  let y = random(0,750);
   let colour = random(0,255);
   stroke(colour);
   point(x,y);
@@ -351,52 +353,51 @@ saucerPiece5.y = saucerPiece5.y + saucerPiece5.vy;
 saucerPiece6.x = saucerPiece6.x + saucerPiece6.vx;
 saucerPiece6.y = saucerPiece6.y + saucerPiece6.vy;
 }
-
 //check if the saucer is on a planet
 function checkIfOnPlanet() {
   //earth
   let d = dist(saucerPiece1.x,saucerPiece1.y,250,250);
-if (d < (saucerPiece1.size/2 + 68/2){
-  state = `earth`;
+if (d < saucerPiece1.size/2 + 68/2){
+  state === `earth`;
 }
   //saturn
   let saturnDist = dist(saucerPiece1.x,saucerPiece1.y,595,140);
-if (saturnDist < (saucerPiece1.size/2 + 110/2){
-  state = `saturn`;
+if (saturnDist < saucerPiece1.size/2 + 110/2){
+  state === `saturn`;
 }
 //uranus
 let uranusDist = dist(saucerPiece1.x,saucerPiece1.y,350,70);
-if (uranusDist < (saucerPiece1.size/2 + 60/2){
-state = `uranus`;
+if (uranusDist < saucerPiece1.size/2 + 60/2){
+state === `uranus`;
 }
 //venus
 let venusDist = dist(saucerPiece1.x,saucerPiece1.y,450,250);
-if (venusDist < (saucerPiece1.size/2 + 60/2){
-state = `venus`;
+if (venusDist < saucerPiece1.size/2 + 60/2){
+state === `venus`;
 }
 //mercury
 let mercuryDist = dist(saucerPiece1.x,saucerPiece1.y,475,340);
-if (mercuryDist < (saucerPiece1.size/2 + 50/2){
-state = `mercury`;
+if (mercuryDist < saucerPiece1.size/2 + 50/2){
+state === `mercury`;
 }
 //jupiter
 let jupiterDist = dist(saucerPiece1.x,saucerPiece1.y,190,500);
-if (jupiterDist < (saucerPiece1.size/2 + 125/2){
-state = `jupiter`;
+if (jupiterDist < saucerPiece1.size/2 + 125/2){
+state === `jupiter`;
 }
 //neptune
 let neptuneDist = dist(saucerPiece1.x,saucerPiece1.y,55,280);
-if (neptuneDist < (saucerPiece1.size/2 + 90/2){
-state = `neptune`;
+if (neptuneDist < saucerPiece1.size/2 + 90/2){
+state === `neptune`;
 }
 //mars
 let marsDist = dist(saucerPiece1.x,saucerPiece1.y,550,445);
-if (marsDist < (saucerPiece1.size/2 + 50/2){
-state = `mars`;
+if (marsDist < saucerPiece1.size/2 + 50/2){
+state === `mars`;
 }
 //sun
 let sunDist = dist(saucerPiece1.x,saucerPiece1.y,375,375);
-if (sunDist < (saucerPiece1.size/2 + 225/2){
-state = `sunDeath`;
+if (sunDist < saucerPiece1.size/2 + 225/2){
+state === `sunDeath`;
 }
 }
