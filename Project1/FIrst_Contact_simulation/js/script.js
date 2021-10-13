@@ -106,7 +106,7 @@ let saucerPiece2 = {
                           }
 };
 //telling program which state to begin inspect
-let state = `title`;
+let state = `flight simulation`;
 
 /**
 preloading images
@@ -355,48 +355,48 @@ saucerPiece6.y = saucerPiece6.y + saucerPiece6.vy;
 //check if the saucer is on a planet
 function checkIfOnPlanet() {
   //earth
-  let  = dist(saucerPiece1.x,saucerPiece1.y,250,250);
-if (d < dist(saucerPiece1.size/2 + 68/2){
+  let d = dist(saucerPiece1.x,saucerPiece1.y,250,250);
+if (d < (saucerPiece1.size/2 + 68/2){
   state = `earth`;
 }
   //saturn
-  let  = dist(saucerPiece1.x,saucerPiece1.y,595,140);
-if (d < dist(saucerPiece1.size/2 + 110/2){
+  let saturnDist = dist(saucerPiece1.x,saucerPiece1.y,595,140);
+if (saturnDist < (saucerPiece1.size/2 + 110/2){
   state = `saturn`;
 }
 //uranus
-let  = dist(saucerPiece1.x,saucerPiece1.y,350,70);
-if (d < dist(saucerPiece1.size/2 + 60/2){
+let uranusDist = dist(saucerPiece1.x,saucerPiece1.y,350,70);
+if (uranusDist < (saucerPiece1.size/2 + 60/2){
 state = `uranus`;
 }
 //venus
-let  = dist(saucerPiece1.x,saucerPiece1.y,450,250);
-if (d < dist(saucerPiece1.size/2 + 60/2){
+let venusDist = dist(saucerPiece1.x,saucerPiece1.y,450,250);
+if (venusDist < (saucerPiece1.size/2 + 60/2){
 state = `venus`;
 }
 //mercury
-let  = dist(saucerPiece1.x,saucerPiece1.y,475,340);
-if (d < dist(saucerPiece1.size/2 + 50/2){
+let mercuryDist = dist(saucerPiece1.x,saucerPiece1.y,475,340);
+if (mercuryDist < (saucerPiece1.size/2 + 50/2){
 state = `mercury`;
 }
 //jupiter
-let  = dist(saucerPiece1.x,saucerPiece1.y,190,500);
-if (d < dist(saucerPiece1.size/2 + 125/2){
+let jupiterDist = dist(saucerPiece1.x,saucerPiece1.y,190,500);
+if (jupiterDist < (saucerPiece1.size/2 + 125/2){
 state = `jupiter`;
 }
 //neptune
-let  = dist(saucerPiece1.x,saucerPiece1.y,55,280);
-if (d < dist(saucerPiece1.size/2 + 90/2){
+let neptuneDist = dist(saucerPiece1.x,saucerPiece1.y,55,280);
+if (neptuneDist < (saucerPiece1.size/2 + 90/2){
 state = `neptune`;
 }
-//uranus
-let  = dist(saucerPiece1.x,saucerPiece1.y,550,445);
-if (d < dist(saucerPiece1.size/2 + 50/2){
-state = `uranus`;
+//mars
+let marsDist = dist(saucerPiece1.x,saucerPiece1.y,550,445);
+if (marsDist < (saucerPiece1.size/2 + 50/2){
+state = `mars`;
 }
 //sun
-let  = dist(saucerPiece1.x,saucerPiece1.y,375,375);
-if (d < dist(saucerPiece1.size/2 + 225/2){
+let sunDist = dist(saucerPiece1.x,saucerPiece1.y,375,375);
+if (sunDist < (saucerPiece1.size/2 + 225/2){
 state = `sunDeath`;
 }
 }
