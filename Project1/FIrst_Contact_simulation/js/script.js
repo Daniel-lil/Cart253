@@ -111,7 +111,7 @@ let saucerPiece2 = {
                           }
 };
 //telling program which state to begin inspect
-let state = `choice`;
+let state = `title`;
 
 /**
 preloading images
@@ -144,7 +144,12 @@ Description of draw()
 function draw() {
 
   if (state === `title`){
-
+    push();
+    background(black);
+    displayStatic();
+    displayTitle();
+    startSimulation();
+    pop();
   }
   else if(state ===`choice`){
     push();
@@ -260,7 +265,37 @@ function draw() {
   }
 }
 
+//displays text for title screen
+function displayTitle(){
+  //defines fade in preset to put into alpha
+    fadeIn=fadeIn+fadeInSpeed;
+  push();
+  strokeWeight(4);
+    textSize(90);
+    textStyle(BOLD);
+    fill(black);
+    textAlign(CENTER,CENTER);
+    text(`Welcome to`,375 ,175 );
 
+  pop();
+  push();
+    textSize(100);
+    stroke(5,134,0, fadeIn);
+    strokeWeight(8.5);
+    textStyle(BOLD);
+    fill(17, 186,12, fadeIn);
+    textAlign(CENTER,CENTER);
+    text(`First Contact`,375 ,375 );
+    text(`Simulator`,375 ,550 );
+  pop();
+}
+function startSimulation(){
+  function keyPressed(){
+    if(state ===`title`){
+      state = `choice`;
+    }
+  }
+}
 
 function drawAlienPic() {
   push();
@@ -294,6 +329,15 @@ noStroke();
 fill(255, 255, 255,)
 ellipse (600, 100, 250, 180);
 pop();
+push();
+  textSize(21);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Hey there human`,600 ,65 );
+  text(`would you like to try`,600 ,95 );
+  text(`flying my spaceship?`,600 ,125 );
+pop();
   //triangle
 push();
 noStroke();
@@ -306,9 +350,18 @@ push();
 fill(132,73,227);
 stroke(82, 23, 177);
 strokeWeight(8);
-rect (50, 500, 200, 200, 50);
-
+rect (50, 500, 200, 120, 50);
 pop();
+push();
+  textSize(21);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Click the`,150 ,532 );
+  text(`left arrow key to`,150 ,557 );
+  text(`remain on Earth`,150 ,582 );
+pop();
+
 
 //right right bubble
   //rectangle
@@ -316,14 +369,22 @@ push();
 fill(132,73,227);
 stroke(82, 23, 177);
 strokeWeight(8);
-rect (500,500, 200, 200, 50);
-
+rect (500,500, 200, 120, 50);
+pop();
+push();
+  textSize(21);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Click the`,600 ,532 );
+  text(`right arrow key to`,600 ,557 );
+  text(`explore the stars`,600 ,582 );
 pop();
 }
 
 function drawAlien() {
   //draws my alien from first the code we wrote (a little changed due to sizing)
-  //for loop for fading in alien
+  //defines fade in preset to put into alpha
     fadeIn=fadeIn+fadeInSpeed;
   //legs
     push();
