@@ -140,15 +140,16 @@ Description of draw()
 function draw() {
 
   if (state === `title`){
-    title();
+
   }
   else if(state ===`choice`){
-    choice();
+
   }
   else if(state ===`instructions`){
 
   }
   else if (state ===`flight simulation`){
+    push();
     background(black);
     displayStatic();
     displayPlanets();
@@ -156,36 +157,85 @@ function draw() {
     handleInput();
     moveSaucer();
     checkIfOnPlanet();
+    pop();
   }
   else if(state ===`home`){
-    love();
+    push();
+    background(black);
+    displayStatic();
+    pop();
   }
   else if (state === `earth`){
-    earth();
+    push();
+  background(black);
+  displayStatic();
+  imageMode(CENTER)
+    image(earth,375,375,420,420);
+  pop();
   }
   else if (state === `saturn`) {
-    saturn();
+    push();
+  background(black);
+  displayStatic();
+  imageMode(CENTER)
+    image(saturn,375,375,450,450);
+  pop();
   }
   else if (state === `uranus`){
-    uranus();
+    push();
+  background(black);
+  displayStatic();
+  imageMode(CENTER)
+    image(uranus,375,375,375,375);
+  pop();
   }
   else if(state ===`venus`){
-    venus();
+    push();
+  background(black);
+  displayStatic();
+  imageMode(CENTER)
+    image(venus,375,375,450,450);
+  pop();
   }
   else if (state ===`mercury`){
-    mercury();
+    push();
+  background(black);
+  displayStatic();
+  imageMode(CENTER)
+    image(mercury,375,375,420,420);
+  pop();
   }
   else if(state ===`jupiter`){
-    love();
+    push();
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
+      image(jupiter,375,375,450,450);
+    pop();
   }
   else if (state === `neptune`){
-    earth();
+    push();
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
+      image(neptune,375,375,450,450);
+    pop();
   }
   else if (state === `mars`) {
-    saturn();
+    push();
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
+      image(mars,375,375,375,375);
+    pop();
   }
   else if (state === `sunDeath`) {
-    sunDeath();
+    push();
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
+      image(sun,375,375,550,550);
+    pop();
   }
 }
 
@@ -357,47 +407,47 @@ saucerPiece6.y = saucerPiece6.y + saucerPiece6.vy;
 function checkIfOnPlanet() {
   //earth
   let d = dist(saucerPiece1.x,saucerPiece1.y,250,250);
-if (d < saucerPiece1.size/2 + 68/2){
-  state === `earth`;
+if (d < saucerPiece1.size/2 + 50/2){
+  state = `earth`;
 }
   //saturn
   let saturnDist = dist(saucerPiece1.x,saucerPiece1.y,595,140);
-if (saturnDist < saucerPiece1.size/2 + 110/2){
-  state === `saturn`;
+if (saturnDist < saucerPiece1.size/2 + 66/2){
+  state = `saturn`;
 }
 //uranus
 let uranusDist = dist(saucerPiece1.x,saucerPiece1.y,350,70);
-if (uranusDist < saucerPiece1.size/2 + 60/2){
-state === `uranus`;
+if (uranusDist < saucerPiece1.size/2 + 54/2){
+state = `uranus`;
 }
 //venus
 let venusDist = dist(saucerPiece1.x,saucerPiece1.y,450,250);
-if (venusDist < saucerPiece1.size/2 + 60/2){
-state === `venus`;
+if (venusDist < saucerPiece1.size/2 + 30/2){
+state = `venus`;
 }
 //mercury
 let mercuryDist = dist(saucerPiece1.x,saucerPiece1.y,475,340);
-if (mercuryDist < saucerPiece1.size/2 + 50/2){
-state === `mercury`;
+if (mercuryDist < saucerPiece1.size/2 + 24/2){
+state = `mercury`;
 }
 //jupiter
 let jupiterDist = dist(saucerPiece1.x,saucerPiece1.y,190,500);
-if (jupiterDist < saucerPiece1.size/2 + 125/2){
-state === `jupiter`;
+if (jupiterDist < saucerPiece1.size/2 + 79/2){
+state = `jupiter`;
 }
 //neptune
 let neptuneDist = dist(saucerPiece1.x,saucerPiece1.y,55,280);
-if (neptuneDist < saucerPiece1.size/2 + 90/2){
-state === `neptune`;
+if (neptuneDist < saucerPiece1.size/2 + 58/2){
+state = `neptune`;
 }
 //mars
 let marsDist = dist(saucerPiece1.x,saucerPiece1.y,550,445);
-if (marsDist < saucerPiece1.size/2 + 50/2){
-state === `mars`;
+if (marsDist < saucerPiece1.size/2 + 40/2){
+state = `mars`;
 }
 //sun
 let sunDist = dist(saucerPiece1.x,saucerPiece1.y,375,375);
-if (sunDist < saucerPiece1.size/2 + 225/2){
-state === `sunDeath`;
+if (sunDist < saucerPiece1.size/2 + 140/2){
+state = `sunDeath`;
 }
 }
