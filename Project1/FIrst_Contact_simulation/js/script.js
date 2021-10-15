@@ -16,6 +16,10 @@ let neptune;
 let mars;
 let sun;
 
+//define attributes for fades using alpha
+let fadeIn=0;
+let fadeInSpeed = 1;
+
 //defining attributes for flying saucer
 
 let black = 0
@@ -146,11 +150,14 @@ function draw() {
     push();
     drawAlienPic();
     drawAlien();
-    pop();
     choose();
+    pop();
   }
   else if(state ===`instructions`){
-
+      push();
+      background(black);
+      displayStatic();
+      pop();
   }
   else if (state ===`flight simulation`){
     push();
@@ -167,6 +174,8 @@ function draw() {
     push();
     background(black);
     displayStatic();
+    imageMode(CENTER)
+    image(earth,375,375,420,420);
     pop();
   }
   else if (state === `earth`){
@@ -183,6 +192,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(saturn,375,375,450,450);
+    returnToFlight();
     pop();
   }
   else if (state === `uranus`){
@@ -191,6 +201,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(uranus,375,375,375,375);
+    returnToFlight();
     pop();
   }
   else if(state ===`venus`){
@@ -199,6 +210,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(venus,375,375,450,450);
+    returnToFlight();
     pop();
   }
   else if (state ===`mercury`){
@@ -207,6 +219,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(mercury,375,375,420,420);
+    returnToFlight();
     pop();
   }
   else if(state ===`jupiter`){
@@ -215,6 +228,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(jupiter,375,375,450,450);
+    returnToFlight();
     pop();
   }
   else if (state === `neptune`){
@@ -223,6 +237,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(neptune,375,375,450,450);
+    returnToFlight();
     pop();
   }
   else if (state === `mars`) {
@@ -231,6 +246,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(mars,375,375,375,375);
+    returnToFlight();
     pop();
   }
   else if (state === `sunDeath`) {
@@ -239,6 +255,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(sun,375,375,550,550);
+    returnToFlight();
     pop();
   }
 }
@@ -271,67 +288,87 @@ function drawAlienPic() {
   ellipse (375,800,1500,300);
   pop();
 //alien text bubble
-  //rectangle
-
+  //oval
+push();
+noStroke();
+fill(255, 255, 255,)
+ellipse (600, 100, 250, 180);
+pop();
   //triangle
-
+push();
+noStroke();
+fill(255, 255, 255)
+triangle(430, 250, 530, 150,630,150)
+pop();
 //left choice bubble
   //rectangle
+push();
+fill(132,73,227);
+stroke(82, 23, 177);
+strokeWeight(8);
+rect (50, 500, 200, 200, 50);
 
-  //triangle
+pop();
 
 //right right bubble
   //rectangle
+push();
+fill(132,73,227);
+stroke(82, 23, 177);
+strokeWeight(8);
+rect (500,500, 200, 200, 50);
 
-  //triangle
-
+pop();
 }
 
 function drawAlien() {
+  //draws my alien from first the code we wrote (a little changed due to sizing)
+  //for loop for fading in alien
+    fadeIn=fadeIn+fadeInSpeed;
   //legs
     push();
     noStroke();
-    fill(170, 170, 170);
+    fill(170, 170, 170, fadeIn);
     rect (290+40, 600, 25, 180);
     rect (355+35, 600, 25, 180);
     pop();
 //body
   push();
   noStroke();
-  fill(186, 186, 186);
+  fill(186, 186, 186, fadeIn);
   ellipse (320+55,480,150,350);
   pop();
 //head
   push();
   noStroke();
-  fill(160,160,160);
+  fill(160,160,160, fadeIn);
   ellipse (320+55,300,100,150);
   fill (0,0,0);
   pop();
 //eyes
   push();
   noStroke();
-  fill(black);
+  fill(black,black,black, fadeIn);
   ellipse (300+55, 310, 16, 40);
   ellipse (340+55, 310, 16, 40);
   pop();
 //nose
   push();
   noStroke();
-  fill(black);
+  fill(black,black,black, fadeIn);
   ellipse (315+55, 330, 4, 3);
   ellipse (325+55, 330, 4, 3);
   pop();
 //mouth
   push();
   noStroke();
-  fill(black);
+  fill(black,black,black, fadeIn);
   rect(299+55,340, 40, 20, 20);
   pop();
 //teeth
   push();
   noStroke();
-  fill(255+55,255,255);
+  fill(255+55,255,255, fadeIn);
   rect(305+55,340, 5, 10, 20);
   rect(312.5+55,340, 5, 10, 20);
   rect(320+55,340, 5, 10, 20);
@@ -344,7 +381,7 @@ function drawAlien() {
 //nipples + belly button
   push();
   noStroke();
-  fill(0,0,0)
+  fill(0,0,0, fadeIn)
   ellipse (290+55, 400, 4, 3);
   ellipse (355+55, 400, 4, 3);
   ellipse (375, 560, 5, 5);
@@ -365,41 +402,41 @@ for (let i = 0; i < 2000; i++) {
 //choose whether to go with alien or not
 function choose() {
   function keyPressed(){
-    if (keyCode === LEFT_ARROW){
-    state = `home`;
-  } else if (keyCode === RIGHT_ARROW) {
+    if (key === a){
+    state = `flight simulation`;
+  } else if (key === s) {
     state = `instructions`;
 }
 }
-
+}
 
 //display the planets
-function displayPlanets() {
-imageMode(CENTER)
+function displayPlanets(){
+imageMode(CENTER);
   image(earth,250,250,68,68);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(saturn,595,140,110,110);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(uranus,350,70,60,60);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(venus,450,250,60,60);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(mercury,475,340,50,50);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(jupiter,190,500,125,125);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(neptune,55,280,90,90);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(mars,550,445,50,50);
 
-  imageMode(CENTER)
+  imageMode(CENTER);
   image(sun,375,375,225,225);
 }
 
@@ -568,6 +605,5 @@ state = `mars`;
 let sunDist = dist(saucerPiece1.x,saucerPiece1.y,375,375);
 if (sunDist < saucerPiece1.size/2 + 140/2){
 state = `sunDeath`;
-}
 }
 }
