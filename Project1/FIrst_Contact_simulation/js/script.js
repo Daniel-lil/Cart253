@@ -107,7 +107,7 @@ let saucerPiece2 = {
                           }
 };
 //telling program which state to begin inspect
-let state = `flight simulation`;
+let state = `choice`;
 
 /**
 preloading images
@@ -143,7 +143,11 @@ function draw() {
 
   }
   else if(state ===`choice`){
-
+    push();
+    drawAlienPic();
+    drawAlien();
+    pop();
+    choose();
   }
   else if(state ===`instructions`){
 
@@ -167,50 +171,50 @@ function draw() {
   }
   else if (state === `earth`){
     push();
-  background(black);
-  displayStatic();
-  imageMode(CENTER)
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
     image(earth,375,375,420,420);
-  pop();
+    pop();
   }
   else if (state === `saturn`) {
     push();
-  background(black);
-  displayStatic();
-  imageMode(CENTER)
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
     image(saturn,375,375,450,450);
-  pop();
+    pop();
   }
   else if (state === `uranus`){
     push();
-  background(black);
-  displayStatic();
-  imageMode(CENTER)
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
     image(uranus,375,375,375,375);
-  pop();
+    pop();
   }
   else if(state ===`venus`){
     push();
-  background(black);
-  displayStatic();
-  imageMode(CENTER)
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
     image(venus,375,375,450,450);
-  pop();
+    pop();
   }
   else if (state ===`mercury`){
     push();
-  background(black);
-  displayStatic();
-  imageMode(CENTER)
+    background(black);
+    displayStatic();
+    imageMode(CENTER)
     image(mercury,375,375,420,420);
-  pop();
+    pop();
   }
   else if(state ===`jupiter`){
     push();
     background(black);
     displayStatic();
     imageMode(CENTER)
-      image(jupiter,375,375,450,450);
+    image(jupiter,375,375,450,450);
     pop();
   }
   else if (state === `neptune`){
@@ -218,7 +222,7 @@ function draw() {
     background(black);
     displayStatic();
     imageMode(CENTER)
-      image(neptune,375,375,450,450);
+    image(neptune,375,375,450,450);
     pop();
   }
   else if (state === `mars`) {
@@ -226,7 +230,7 @@ function draw() {
     background(black);
     displayStatic();
     imageMode(CENTER)
-      image(mars,375,375,375,375);
+    image(mars,375,375,375,375);
     pop();
   }
   else if (state === `sunDeath`) {
@@ -234,28 +238,143 @@ function draw() {
     background(black);
     displayStatic();
     imageMode(CENTER)
-      image(sun,375,375,550,550);
+    image(sun,375,375,550,550);
     pop();
   }
 }
 
 
-// functions for flight simulation state
-function displayStatic() {
-  //display static
 
+function drawAlienPic() {
+  push();
+//sky
+  background(black);
+  pop();
+//moon part2
+  push();
+  fill(255)
+  ellipse (100, 100, 100, 140);
+  pop();
+//moon part1
+  push();
+  fill(black)
+  ellipse (120, 100, 70, 90);
+  pop();
+//stars
+  push();
+  displayStatic();
+  pop();
+//ground
+  push();
+  noStroke();
+  fill(9, 54, 31);
+  ellipse (375,800,1500,300);
+  pop();
+//alien text bubble
+  //rectangle
+
+  //triangle
+
+//left choice bubble
+  //rectangle
+
+  //triangle
+
+//right right bubble
+  //rectangle
+
+  //triangle
+
+}
+
+function drawAlien() {
+  //legs
+    push();
+    noStroke();
+    fill(170, 170, 170);
+    rect (290+40, 600, 25, 180);
+    rect (355+35, 600, 25, 180);
+    pop();
+//body
+  push();
+  noStroke();
+  fill(186, 186, 186);
+  ellipse (320+55,480,150,350);
+  pop();
+//head
+  push();
+  noStroke();
+  fill(160,160,160);
+  ellipse (320+55,300,100,150);
+  fill (0,0,0);
+  pop();
+//eyes
+  push();
+  noStroke();
+  fill(black);
+  ellipse (300+55, 310, 16, 40);
+  ellipse (340+55, 310, 16, 40);
+  pop();
+//nose
+  push();
+  noStroke();
+  fill(black);
+  ellipse (315+55, 330, 4, 3);
+  ellipse (325+55, 330, 4, 3);
+  pop();
+//mouth
+  push();
+  noStroke();
+  fill(black);
+  rect(299+55,340, 40, 20, 20);
+  pop();
+//teeth
+  push();
+  noStroke();
+  fill(255+55,255,255);
+  rect(305+55,340, 5, 10, 20);
+  rect(312.5+55,340, 5, 10, 20);
+  rect(320+55,340, 5, 10, 20);
+  rect(327.5+55,340, 5, 10, 20);
+  rect(305+55,350, 5, 10, 20);
+  rect(312.5+55,350, 5, 10, 20);
+  rect(320+55,350, 5, 10, 20);
+  rect(327.5+55,350, 5, 10, 20);
+  pop();
+//nipples + belly button
+  push();
+  noStroke();
+  fill(0,0,0)
+  ellipse (290+55, 400, 4, 3);
+  ellipse (355+55, 400, 4, 3);
+  ellipse (375, 560, 5, 5);
+  pop();
+}
+
+//display static
+function displayStatic() {
 for (let i = 0; i < 2000; i++) {
   let x = random(0,750);
   let y = random(0,750);
   let colour = random(0,255);
   stroke(colour);
   point(x,y);
-
 }
 }
 
-function displayPlanets() {
+//choose whether to go with alien or not
+function choose() {
+  function keyPressed(){
+    if (keyCode === LEFT_ARROW){
+    state = `home`;
+  } else if (keyCode === RIGHT_ARROW) {
+    state = `instructions`;
+}
+}
+
+
 //display the planets
+function displayPlanets() {
 imageMode(CENTER)
   image(earth,250,250,68,68);
 
@@ -449,5 +568,6 @@ state = `mars`;
 let sunDist = dist(saucerPiece1.x,saucerPiece1.y,375,375);
 if (sunDist < saucerPiece1.size/2 + 140/2){
 state = `sunDeath`;
+}
 }
 }
