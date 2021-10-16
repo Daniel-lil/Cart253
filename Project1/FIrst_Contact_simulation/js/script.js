@@ -111,7 +111,7 @@ let saucerPiece2 = {
                           }
 };
 //telling program which state to begin inspect
-let state = `title`;
+let state = `home`;
 
 /**
 preloading images
@@ -148,20 +148,19 @@ function draw() {
     background(black);
     displayStatic();
     displayTitle();
-    startSimulation();
     pop();
   }
   else if(state ===`choice`){
     push();
     drawAlienPic();
     drawAlien();
-    choose();
     pop();
   }
   else if(state ===`instructions`){
       push();
       background(black);
       displayStatic();
+      displayInstructions();
       pop();
   }
   else if (state ===`flight simulation`){
@@ -181,6 +180,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(earth,375,375,420,420);
+    displayHomeText();
     pop();
   }
   else if (state === `earth`){
@@ -189,6 +189,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(earth,375,375,420,420);
+    displayEarthText();
     pop();
   }
   else if (state === `saturn`) {
@@ -197,7 +198,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(saturn,375,375,450,450);
-    returnToFlight();
     pop();
   }
   else if (state === `uranus`){
@@ -206,7 +206,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(uranus,375,375,375,375);
-    returnToFlight();
     pop();
   }
   else if(state ===`venus`){
@@ -215,7 +214,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(venus,375,375,450,450);
-    returnToFlight();
     pop();
   }
   else if (state ===`mercury`){
@@ -224,7 +222,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(mercury,375,375,420,420);
-    returnToFlight();
     pop();
   }
   else if(state ===`jupiter`){
@@ -233,7 +230,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(jupiter,375,375,450,450);
-    returnToFlight();
     pop();
   }
   else if (state === `neptune`){
@@ -242,7 +238,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(neptune,375,375,450,450);
-    returnToFlight();
     pop();
   }
   else if (state === `mars`) {
@@ -251,7 +246,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(mars,375,375,375,375);
-    returnToFlight();
     pop();
   }
   else if (state === `sunDeath`) {
@@ -260,7 +254,6 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(sun,375,375,550,550);
-    returnToFlight();
     pop();
   }
 }
@@ -276,29 +269,41 @@ function displayTitle(){
     fill(black);
     textAlign(CENTER,CENTER);
     text(`Welcome to`,375 ,175 );
+pop();
 
-  pop();
   push();
     textSize(100);
     stroke(5,134,0, fadeIn);
-    strokeWeight(8.5);
+    strokeWeight(10);
     textStyle(BOLD);
     fill(17, 186,12, fadeIn);
     textAlign(CENTER,CENTER);
     text(`First Contact`,375 ,375 );
     text(`Simulator`,375 ,550 );
   pop();
+
+push();
+  strokeWeight(4);
+    textSize(17);
+      stroke(210,210,210, fadeIn/3);
+    textStyle(BOLD);
+    fill(black);
+    textAlign(CENTER,CENTER);
+    text(`press any key to begin`,640 ,725 );
+    pop();
 }
-function startSimulation(){
-  function keyPressed(){
+//start the simulation
+  function mousePressed(){
     if(state ===`title`){
       state = `choice`;
+      fadeIn=0;
     }
   }
-}
 
 function drawAlienPic() {
   push();
+  //defines fade in preset to put into alpha
+    fadeIn=fadeIn+fadeInSpeed;
 //sky
   background(black);
   pop();
@@ -353,13 +358,13 @@ strokeWeight(8);
 rect (50, 500, 200, 120, 50);
 pop();
 push();
-  textSize(21);
+  textSize(19);
   textStyle(BOLD);
   fill(black);
   textAlign(CENTER,CENTER);
-  text(`Click the`,150 ,532 );
-  text(`left arrow key to`,150 ,557 );
-  text(`remain on Earth`,150 ,582 );
+  text(`Click the left side`,150 ,536 );
+  text(`of the screen to`,150 ,561 );
+  text(`remain on Earth`,150 ,586 );
 pop();
 
 
@@ -372,13 +377,13 @@ strokeWeight(8);
 rect (500,500, 200, 120, 50);
 pop();
 push();
-  textSize(21);
+  textSize(19);
   textStyle(BOLD);
   fill(black);
   textAlign(CENTER,CENTER);
-  text(`Click the`,600 ,532 );
-  text(`right arrow key to`,600 ,557 );
-  text(`explore the stars`,600 ,582 );
+  text(`Click the right side`,600 ,536 );
+  text(`of the screen to`,600 ,561 );
+  text(`explore the stars`,600 ,586 );
 pop();
 }
 
@@ -389,47 +394,47 @@ function drawAlien() {
   //legs
     push();
     noStroke();
-    fill(170, 170, 170, fadeIn);
+    fill(170, 170, 170,);
     rect (290+40, 600, 25, 180);
     rect (355+35, 600, 25, 180);
     pop();
 //body
   push();
   noStroke();
-  fill(186, 186, 186, fadeIn);
+  fill(186, 186, 186,);
   ellipse (320+55,480,150,350);
   pop();
 //head
   push();
   noStroke();
-  fill(160,160,160, fadeIn);
+  fill(160,160,160,);
   ellipse (320+55,300,100,150);
   fill (0,0,0);
   pop();
 //eyes
   push();
   noStroke();
-  fill(black,black,black, fadeIn);
+  fill(black,black,black,);
   ellipse (300+55, 310, 16, 40);
   ellipse (340+55, 310, 16, 40);
   pop();
 //nose
   push();
   noStroke();
-  fill(black,black,black, fadeIn);
+  fill(black,black,black,);
   ellipse (315+55, 330, 4, 3);
   ellipse (325+55, 330, 4, 3);
   pop();
 //mouth
   push();
   noStroke();
-  fill(black,black,black, fadeIn);
+  fill(black,black,black,);
   rect(299+55,340, 40, 20, 20);
   pop();
 //teeth
   push();
   noStroke();
-  fill(255+55,255,255, fadeIn);
+  fill(255+55,255,255,);
   rect(305+55,340, 5, 10, 20);
   rect(312.5+55,340, 5, 10, 20);
   rect(320+55,340, 5, 10, 20);
@@ -442,7 +447,7 @@ function drawAlien() {
 //nipples + belly button
   push();
   noStroke();
-  fill(0,0,0, fadeIn)
+  fill(0,0,0,)
   ellipse (290+55, 400, 4, 3);
   ellipse (355+55, 400, 4, 3);
   ellipse (375, 560, 5, 5);
@@ -461,13 +466,82 @@ for (let i = 0; i < 2000; i++) {
 }
 
 //choose whether to go with alien or not
-function choose() {
-  function keyPressed(){
-    if (key === a){
-    state = `flight simulation`;
-  } else if (key === s) {
+  function mousePressed(){
+    if (state === `choice` && mouseX > 375){
+    state = `home`;
+      fadeIn=0;
+  } else if (state === `choice` && mouseX < 375) {
     state = `instructions`;
+    fadeIn=0;
 }
+}
+
+//displays text that coincides with home state
+function displayHomeText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+  textSize(55);
+  stroke(5,134,0, fadeIn);
+  strokeWeight(10);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`You've Decided`,375 ,100 );
+  text(`To stay Home on Earth`,375 ,650 );
+pop();
+}
+
+//display instructions
+function displayInstructions(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`instructions`,375 ,120 );
+pop();
+
+push();
+  textSize(35);
+  stroke(5,134,0,fadeIn);
+  strokeWeight(3);
+  textStyle(BOLD);
+  fill(17, 186,12,fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Control the spaceship`,375 ,250 );
+  text(`with your arrow keys`,375 ,335 );
+  text(`and take a tour of`, 375, 420);
+  text(`the universe`, 375, 505);
+pop();
+
+push();
+  textSize(35);
+  stroke(80,0,0,fadeIn);
+  strokeWeight(3);
+  textStyle(BOLD);
+  fill(150, 0, 0,fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Warning: Don't go too close to the sun!`, 375, 590);
+pop();
+
+  push();
+    strokeWeight(4);
+      textSize(17);
+        stroke(225,225,225, fadeIn/4);
+      textStyle(BOLD);
+      fill(black);
+      textAlign(CENTER,CENTER);
+      text(`press any key to begin`,640 ,725 );
+      pop();
+}
+
+
+//start flight
+function keyPressed(){
+  if (state === `instructions`){
+    state = `flight simulation`
 }
 }
 
@@ -600,6 +674,7 @@ if (keyIsDown(UP_ARROW)) {
   }
 }
 
+//makes saucer actually move
 function moveSaucer(){
 //move saucer
 saucerPiece1.x = saucerPiece1.x + saucerPiece1.vx;
@@ -620,7 +695,7 @@ saucerPiece5.y = saucerPiece5.y + saucerPiece5.vy;
 saucerPiece6.x = saucerPiece6.x + saucerPiece6.vx;
 saucerPiece6.y = saucerPiece6.y + saucerPiece6.vy;
 }
-//check if the saucer is on a planet
+//check if the saucer is on a planet to trigger state
 function checkIfOnPlanet() {
   //earth
   let d = dist(saucerPiece1.x,saucerPiece1.y,250,250);
