@@ -25,8 +25,8 @@ let fadeInSpeed = 1;
 let black = 0
 
 let saucerPiece1 = {
-  x: 500,
-  y: 500,
+  x: 375,
+  y: 600,
   size: 75,
   vx: 0,
   vy: 0,
@@ -35,8 +35,8 @@ let saucerPiece1 = {
   }
 
 let saucerPiece2 = {
-  x: 500,
-  y: 500,
+  x: 375,
+  y: 600,
   size: 32,
   vx: 0,
   vy: 0,
@@ -49,8 +49,8 @@ let saucerPiece2 = {
 }
 
   let saucerPiece3 = {
-      x: 494,
-      y: 525,
+      x: 369,
+      y: 625,
       w: 7,
       h: 12,
       corner: 20,
@@ -64,8 +64,8 @@ let saucerPiece2 = {
       }
 }
       let saucerPiece4 = {
-          x: 494,
-          y: 470,
+          x: 369,
+          y: 570,
           w: 7,
           h: 12,
           corner: 20,
@@ -80,8 +80,8 @@ let saucerPiece2 = {
 
         }
               let saucerPiece5 = {
-                  x: 523,
-                  y: 494,
+                  x: 398,
+                  y: 594,
                   w: 12,
                   h: 7,
                   corner: 20,
@@ -96,8 +96,8 @@ let saucerPiece2 = {
 
                 }
                       let saucerPiece6 = {
-                          x: 470,
-                          y: 494,
+                          x: 345,
+                          y: 594,
                           w: 12,
                           h: 7,
                           corner: 20,
@@ -111,7 +111,7 @@ let saucerPiece2 = {
                           }
 };
 //telling program which state to begin inspect
-let state = `home`;
+let state = `flight simulation`;
 
 /**
 preloading images
@@ -139,7 +139,7 @@ createCanvas(750, 750);
 
 
 /**
-Description of draw()
+draws simulation
 */
 function draw() {
 
@@ -198,6 +198,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(saturn,375,375,450,450);
+    displaySaturnText();
     pop();
   }
   else if (state === `uranus`){
@@ -206,6 +207,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(uranus,375,375,375,375);
+    displayUranusText();
     pop();
   }
   else if(state ===`venus`){
@@ -214,6 +216,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(venus,375,375,450,450);
+    displayVenusText();
     pop();
   }
   else if (state ===`mercury`){
@@ -222,6 +225,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(mercury,375,375,420,420);
+    displayMercuryText();
     pop();
   }
   else if(state ===`jupiter`){
@@ -230,6 +234,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(jupiter,375,375,450,450);
+    displayJupiterText();
     pop();
   }
   else if (state === `neptune`){
@@ -238,6 +243,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(neptune,375,375,450,450);
+    displayNeptuneText();
     pop();
   }
   else if (state === `mars`) {
@@ -246,6 +252,7 @@ function draw() {
     displayStatic();
     imageMode(CENTER)
     image(mars,375,375,375,375);
+    displayMarsText();
     pop();
   }
   else if (state === `sunDeath`) {
@@ -253,7 +260,8 @@ function draw() {
     background(black);
     displayStatic();
     imageMode(CENTER)
-    image(sun,375,375,550,550);
+    image(sun,375,375,400,400);
+    displaySunDeathText();
     pop();
   }
 }
@@ -572,7 +580,7 @@ imageMode(CENTER);
   image(mars,550,445,50,50);
 
   imageMode(CENTER);
-  image(sun,375,375,225,225);
+  image(sun,375,375,170,170);
 }
 
 function displaySaucer() {
@@ -592,14 +600,14 @@ stroke(black);
 ellipse(saucerPiece2.x,saucerPiece2.y,saucerPiece2.size);
 
 
-//top light
+//bottom light
 
 fill(saucerPiece3.fill.r,saucerPiece3.fill.g,saucerPiece3.fill.b);
 stroke(black);
 rect(saucerPiece3.x,saucerPiece3.y,saucerPiece3.h,saucerPiece3.w,saucerPiece3.corner);
 
 
-//bottom light
+//top light
 
 fill(saucerPiece4.fill.r,saucerPiece4.fill.g,saucerPiece4.fill.b);
 stroke(black);
@@ -701,45 +709,261 @@ function checkIfOnPlanet() {
   let d = dist(saucerPiece1.x,saucerPiece1.y,250,250);
 if (d < saucerPiece1.size/2 + 50/2){
   state = `earth`;
+  fadeIn=0;
 }
   //saturn
   let saturnDist = dist(saucerPiece1.x,saucerPiece1.y,595,140);
 if (saturnDist < saucerPiece1.size/2 + 66/2){
   state = `saturn`;
+  fadeIn=0;
 }
 //uranus
 let uranusDist = dist(saucerPiece1.x,saucerPiece1.y,350,70);
 if (uranusDist < saucerPiece1.size/2 + 54/2){
 state = `uranus`;
+fadeIn=0;
 }
 //venus
 let venusDist = dist(saucerPiece1.x,saucerPiece1.y,450,250);
 if (venusDist < saucerPiece1.size/2 + 30/2){
 state = `venus`;
+fadeIn=0;
 }
 //mercury
 let mercuryDist = dist(saucerPiece1.x,saucerPiece1.y,475,340);
 if (mercuryDist < saucerPiece1.size/2 + 24/2){
 state = `mercury`;
+fadeIn=0;
 }
 //jupiter
 let jupiterDist = dist(saucerPiece1.x,saucerPiece1.y,190,500);
 if (jupiterDist < saucerPiece1.size/2 + 79/2){
 state = `jupiter`;
+fadeIn=0;
 }
 //neptune
 let neptuneDist = dist(saucerPiece1.x,saucerPiece1.y,55,280);
 if (neptuneDist < saucerPiece1.size/2 + 58/2){
 state = `neptune`;
+fadeIn=0;
 }
 //mars
 let marsDist = dist(saucerPiece1.x,saucerPiece1.y,550,445);
 if (marsDist < saucerPiece1.size/2 + 40/2){
 state = `mars`;
+fadeIn=0;
 }
 //sun
 let sunDist = dist(saucerPiece1.x,saucerPiece1.y,375,375);
 if (sunDist < saucerPiece1.size/2 + 140/2){
 state = `sunDeath`;
+fadeIn=0;
 }
+}
+
+//displays text that corresponds to earth state
+function displayEarthText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Earth`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to saturn state
+function displaySaturnText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Saturn`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to uranus state
+function displayUranusText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Uranus`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to venus state
+function displayVenusText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Venus`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to mercury state
+function displayMercuryText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`mercury`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to jupiter state
+function displayJupiterText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Jupiter`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to neptune state
+function displayNeptuneText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Neptune`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to mars state
+function displayMarsText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(90);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`Welcome to`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(5,134,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(17, 186,12, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`Mars`,375 ,650 );
+pop();
+}
+
+//displays text that corresponds to sunDeath state
+function displaySunDeathText(){
+  fadeIn=fadeIn+fadeInSpeed;
+push();
+strokeWeight(4);
+  textSize(83);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(`You've Been Killed`,375 ,100 );
+pop();
+
+push();
+  textSize(100);
+  stroke(120,0,0, fadeIn/2);
+  strokeWeight(8);
+  textStyle(BOLD);
+  fill(170, 0,0, fadeIn);
+  textAlign(CENTER,CENTER);
+  text(`By The Sun`,375 ,650 );
+pop();
 }
