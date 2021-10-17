@@ -16,17 +16,21 @@ let neptune;
 let mars;
 let sun;
 
+//define amount of time for timer (5 seconds)
+let time = 5000;
+
 //define attributes for fades using alpha
 let fadeIn=0;
 let fadeInSpeed = 1;
 
 //defining attributes for flying saucer
 
-let black = 0
+let black = 0;
+
 
 let saucerPiece1 = {
   x: 375,
-  y: 600,
+  y: 680,
   size: 75,
   vx: 0,
   vy: 0,
@@ -36,7 +40,7 @@ let saucerPiece1 = {
 
 let saucerPiece2 = {
   x: 375,
-  y: 600,
+  y: 680,
   size: 32,
   vx: 0,
   vy: 0,
@@ -50,7 +54,7 @@ let saucerPiece2 = {
 
   let saucerPiece3 = {
       x: 369,
-      y: 625,
+      y: 705,
       w: 7,
       h: 12,
       corner: 20,
@@ -65,7 +69,7 @@ let saucerPiece2 = {
 }
       let saucerPiece4 = {
           x: 369,
-          y: 570,
+          y: 650,
           w: 7,
           h: 12,
           corner: 20,
@@ -81,7 +85,7 @@ let saucerPiece2 = {
         }
               let saucerPiece5 = {
                   x: 398,
-                  y: 594,
+                  y: 674,
                   w: 12,
                   h: 7,
                   corner: 20,
@@ -97,7 +101,7 @@ let saucerPiece2 = {
                 }
                       let saucerPiece6 = {
                           x: 345,
-                          y: 594,
+                          y: 674,
                           w: 12,
                           h: 7,
                           corner: 20,
@@ -109,9 +113,10 @@ let saucerPiece2 = {
                             g: 255,
                             b: 0
                           }
-};
+}
+
 //telling program which state to begin inspect
-let state = `flight simulation`;
+let state = `title`;
 
 /**
 preloading images
@@ -131,12 +136,11 @@ function preload() {
 }
 
 /**
-Description of setup
+creates canvas
 */
 function setup() {
 createCanvas(750, 750);
 }
-
 
 /**
 draws simulation
@@ -158,13 +162,16 @@ function draw() {
   }
   else if(state ===`instructions`){
       push();
+      startFlight();
       background(black);
       displayStatic();
       displayInstructions();
+      displaySaucerWithFade();
       pop();
   }
   else if (state ===`flight simulation`){
     push();
+    resetShipPosition();
     background(black);
     displayStatic();
     displayPlanets();
@@ -176,6 +183,7 @@ function draw() {
   }
   else if(state ===`home`){
     push();
+    restartSimulation();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -185,6 +193,7 @@ function draw() {
   }
   else if (state === `earth`){
     push();
+    restartSimulation();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -194,6 +203,7 @@ function draw() {
   }
   else if (state === `saturn`) {
     push();
+    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -203,6 +213,7 @@ function draw() {
   }
   else if (state === `uranus`){
     push();
+    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -212,6 +223,7 @@ function draw() {
   }
   else if(state ===`venus`){
     push();
+    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -221,6 +233,7 @@ function draw() {
   }
   else if (state ===`mercury`){
     push();
+    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -230,6 +243,7 @@ function draw() {
   }
   else if(state ===`jupiter`){
     push();
+    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -239,6 +253,7 @@ function draw() {
   }
   else if (state === `neptune`){
     push();
+    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -248,6 +263,7 @@ function draw() {
   }
   else if (state === `mars`) {
     push();
+    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -257,6 +273,7 @@ function draw() {
   }
   else if (state === `sunDeath`) {
     push();
+    restartSimulation();
     background(black);
     displayStatic();
     imageMode(CENTER)
@@ -301,7 +318,7 @@ push();
     pop();
 }
 //start the simulation
-  function mousePressed(){
+  function keyPressed(){
     if(state ===`title`){
       state = `choice`;
       fadeIn=0;
@@ -475,10 +492,10 @@ for (let i = 0; i < 2000; i++) {
 
 //choose whether to go with alien or not
   function mousePressed(){
-    if (state === `choice` && mouseX > 375){
+    if (state === `choice` && mouseX < 375){
     state = `home`;
       fadeIn=0;
-  } else if (state === `choice` && mouseX < 375) {
+  } else if (state === `choice` && mouseX > 375) {
     state = `instructions`;
     fadeIn=0;
 }
@@ -533,23 +550,71 @@ push();
   textAlign(CENTER,CENTER);
   text(`Warning: Don't go too close to the sun!`, 375, 590);
 pop();
-
-  push();
-    strokeWeight(4);
-      textSize(17);
-        stroke(225,225,225, fadeIn/4);
-      textStyle(BOLD);
-      fill(black);
-      textAlign(CENTER,CENTER);
-      text(`press any key to begin`,640 ,725 );
-      pop();
 }
 
+function displaySaucerWithFade() {
+//creating shapes for the saucer
 
-//start flight
-function keyPressed(){
+//grey circle
+
+fill(saucerPiece1.fill,saucerPiece1.fill,saucerPiece1.fill,fadeIn);
+stroke(black);
+ellipse(saucerPiece1.x,saucerPiece1.y,saucerPiece1.size);
+
+
+//green circle
+
+fill(saucerPiece2.fill.r,saucerPiece2.fill.g,saucerPiece2.fill.b,fadeIn);
+stroke(black);
+ellipse(saucerPiece2.x,saucerPiece2.y,saucerPiece2.size);
+
+
+//bottom light
+
+fill(saucerPiece3.fill.r,saucerPiece3.fill.g,saucerPiece3.fill.b,fadeIn);
+stroke(black);
+rect(saucerPiece3.x,saucerPiece3.y,saucerPiece3.h,saucerPiece3.w,saucerPiece3.corner);
+
+
+//top light
+
+fill(saucerPiece4.fill.r,saucerPiece4.fill.g,saucerPiece4.fill.b,fadeIn);
+stroke(black);
+rect(saucerPiece4.x,saucerPiece4.y,saucerPiece4.h,saucerPiece4.w,saucerPiece4.corner);
+
+
+//right light
+
+fill(saucerPiece5.fill.r,saucerPiece5.fill.g,saucerPiece5.fill.b,fadeIn);
+stroke(black);
+rect(saucerPiece5.x,saucerPiece5.y,saucerPiece5.h,saucerPiece5.w,saucerPiece5.corner);
+
+
+//left light
+
+fill(saucerPiece6.fill.r,saucerPiece6.fill.g,saucerPiece6.fill.b,fadeIn);
+stroke(black);
+rect(saucerPiece6.x,saucerPiece6.y,saucerPiece6.h,saucerPiece6.w,saucerPiece6.corner);
+}
+
+//starts flight
+function startFlight(){
   if (state === `instructions`){
-    state = `flight simulation`
+    setTimeout(function(){state = `flight simulation`;}, time)
+}
+}
+
+//brings simulation back to title state
+function restartSimulation(){
+  if (state === `home` || `earth` || `sun`){
+    setTimeout(function(){state = `title`;}, time)
+}
+}
+
+//returns pilot from planet view to flight mode
+function returnToFlight(){
+  if (state === `saturn` || `uranus` || `venus` || `mercury` || `jupiter` || `neptune` || `mars`){
+    setTimeout(function(){state = `flight simulation`;}, time)
 }
 }
 
@@ -966,4 +1031,94 @@ push();
   textAlign(CENTER,CENTER);
   text(`By The Sun`,375 ,650 );
 pop();
+}
+
+function resetShipPosition(){
+
+let saucerPiece1 = {
+  x: 375,
+  y: 680,
+  size: 75,
+  vx: 0,
+  vy: 0,
+  speed: 3,
+  fill: 150
+  }
+
+let saucerPiece2 = {
+  x: 375,
+  y: 680,
+  size: 32,
+  vx: 0,
+  vy: 0,
+  speed: 3,
+  fill: {
+    r: 0,
+    g: 255,
+    b: 0
+  }
+}
+
+  let saucerPiece3 = {
+      x: 369,
+      y: 705,
+      w: 7,
+      h: 12,
+      corner: 20,
+      vx: 0,
+      vy: 0,
+      speed: 3,
+      fill: {
+        r: 0,
+        g: 255,
+        b: 0
+      }
+}
+      let saucerPiece4 = {
+          x: 369,
+          y: 650,
+          w: 7,
+          h: 12,
+          corner: 20,
+          vx: 0,
+          vy: 0,
+          speed: 3,
+          fill: {
+            r: 0,
+            g: 255,
+            b: 0
+          }
+
+        }
+              let saucerPiece5 = {
+                  x: 398,
+                  y: 674,
+                  w: 12,
+                  h: 7,
+                  corner: 20,
+                  vx: 0,
+                  vy: 0,
+                  speed: 3,
+                  fill: {
+                    r: 0,
+                    g: 255,
+                    b: 0
+                  }
+
+                }
+                      let saucerPiece6 = {
+                          x: 345,
+                          y: 674,
+                          w: 12,
+                          h: 7,
+                          corner: 20,
+                          vx: 0,
+                          vy: 0,
+                          speed: 3,
+                          fill: {
+                            r: 0,
+                            g: 255,
+                            b: 0
+                          }
+}
 }
