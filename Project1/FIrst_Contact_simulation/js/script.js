@@ -116,7 +116,7 @@ let saucerPiece2 = {
 }
 
 //telling program which state to begin inspect
-let state = `title`;
+let state = `flight simulation`;
 
 /**
 preloading images
@@ -175,6 +175,7 @@ function draw() {
     background(black);
     displayStatic();
     displayPlanets();
+    countdown();
     displaySaucer();
     handleInput();
     moveSaucer();
@@ -183,102 +184,102 @@ function draw() {
   }
   else if(state ===`home`){
     push();
-    restartSimulation();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(earth,375,375,420,420);
     displayHomeText();
+    restartSimulation();
     pop();
   }
   else if (state === `earth`){
     push();
-    restartSimulation();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(earth,375,375,420,420);
     displayEarthText();
+    restartSimulation();
     pop();
   }
   else if (state === `saturn`) {
     push();
-    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(saturn,375,375,450,450);
     displaySaturnText();
+    returnToFlight();
     pop();
   }
   else if (state === `uranus`){
     push();
-    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(uranus,375,375,375,375);
     displayUranusText();
+    returnToFlight();
     pop();
   }
   else if(state ===`venus`){
     push();
-    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(venus,375,375,450,450);
     displayVenusText();
+    returnToFlight();
     pop();
   }
   else if (state ===`mercury`){
     push();
-    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(mercury,375,375,420,420);
     displayMercuryText();
+    returnToFlight();
     pop();
   }
   else if(state ===`jupiter`){
     push();
-    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(jupiter,375,375,450,450);
     displayJupiterText();
+    returnToFlight();
     pop();
   }
   else if (state === `neptune`){
     push();
-    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(neptune,375,375,450,450);
     displayNeptuneText();
+    returnToFlight();
     pop();
   }
   else if (state === `mars`) {
     push();
-    returnToFlight();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(mars,375,375,375,375);
     displayMarsText();
+    returnToFlight();
     pop();
   }
   else if (state === `sunDeath`) {
     push();
-    restartSimulation();
     background(black);
     displayStatic();
     imageMode(CENTER)
     image(sun,375,375,400,400);
     displaySunDeathText();
+    restartSimulation();
     pop();
   }
 }
@@ -614,7 +615,7 @@ function restartSimulation(){
 //returns pilot from planet view to flight mode
 function returnToFlight(){
   if (state === `saturn` || `uranus` || `venus` || `mercury` || `jupiter` || `neptune` || `mars`){
-    setTimeout(function(){state = `flight simulation`;}, time)
+    setTimeout(function(){state = `flight simulation` || resetShipPosition();}, time)
 }
 }
 
@@ -1031,6 +1032,33 @@ push();
   textAlign(CENTER,CENTER);
   text(`By The Sun`,375 ,650 );
 pop();
+}
+
+function countdown(){
+  let counter = `5`
+if (state === `flight simulation`){
+
+    push();
+    strokeWeight(4);
+    textSize(83);
+    textStyle(BOLD);
+    fill(black);
+    textAlign(CENTER,CENTER);
+    text(counter,375 ,375 );
+  pop();
+}
+
+if (counter ===5){
+  setTimeout(function(){counter = `4` && push();
+  strokeWeight(4);
+  textSize(83);
+  textStyle(BOLD);
+  fill(black);
+  textAlign(CENTER,CENTER);
+  text(counter,375 ,375 );
+pop();}, time/5)
+}
+
 }
 
 function resetShipPosition(){
