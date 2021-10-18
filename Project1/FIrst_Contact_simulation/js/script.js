@@ -116,7 +116,7 @@ let saucerPiece2 = {
 }
 
 //telling program which state to begin inspect
-let state = `flight simulation`;
+let state = `title`;
 
 /**
 preloading images
@@ -175,7 +175,6 @@ function draw() {
     background(black);
     displayStatic();
     displayPlanets();
-    countdown();
     displaySaucer();
     handleInput();
     moveSaucer();
@@ -1032,33 +1031,6 @@ push();
   textAlign(CENTER,CENTER);
   text(`By The Sun`,375 ,650 );
 pop();
-}
-
-function countdown(){
-  let counter = `5`
-if (state === `flight simulation`){
-
-    push();
-    strokeWeight(4);
-    textSize(83);
-    textStyle(BOLD);
-    fill(black);
-    textAlign(CENTER,CENTER);
-    text(counter,375 ,375 );
-  pop();
-}
-
-if (counter ===5){
-  setTimeout(function(){counter = `4` && push();
-  strokeWeight(4);
-  textSize(83);
-  textStyle(BOLD);
-  fill(black);
-  textAlign(CENTER,CENTER);
-  text(counter,375 ,375 );
-pop();}, time/5)
-}
-
 }
 
 function resetShipPosition(){
