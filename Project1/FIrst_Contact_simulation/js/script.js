@@ -162,7 +162,6 @@ function draw() {
   }
   else if(state ===`instructions`){
       push();
-      startFlight();
       background(black);
       displayStatic();
       displayInstructions();
@@ -187,7 +186,6 @@ function draw() {
     imageMode(CENTER)
     image(earth,375,375,420,420);
     displayHomeText();
-    restartSimulation();
     pop();
   }
   else if (state === `earth`){
@@ -198,7 +196,6 @@ function draw() {
     image(earth,375,375,420,420);
     displayEarthText();
     resetShipPosition();
-    restartSimulation();
     pop();
   }
   else if (state === `saturn`) {
@@ -209,7 +206,6 @@ function draw() {
     image(saturn,375,375,450,450);
     displaySaturnText();
     resetShipPosition();
-    returnToFlight();
     pop();
   }
   else if (state === `uranus`){
@@ -220,7 +216,6 @@ function draw() {
     image(uranus,375,375,375,375);
     displayUranusText();
     resetShipPosition();
-    returnToFlight();
     pop();
   }
   else if(state ===`venus`){
@@ -231,7 +226,6 @@ function draw() {
     image(venus,375,375,450,450);
     displayVenusText();
     resetShipPosition();
-    returnToFlight();
     pop();
   }
   else if (state ===`mercury`){
@@ -242,7 +236,6 @@ function draw() {
     image(mercury,375,375,420,420);
     displayMercuryText();
     resetShipPosition();
-    returnToFlight();
     pop();
   }
   else if(state ===`jupiter`){
@@ -253,7 +246,6 @@ function draw() {
     image(jupiter,375,375,450,450);
     displayJupiterText();
     resetShipPosition();
-    returnToFlight();
     pop();
   }
   else if (state === `neptune`){
@@ -264,7 +256,6 @@ function draw() {
     image(neptune,375,375,450,450);
     displayNeptuneText();
     resetShipPosition();
-    returnToFlight();
     pop();
   }
   else if (state === `mars`) {
@@ -275,7 +266,6 @@ function draw() {
     image(mars,375,375,375,375);
     displayMarsText();
     resetShipPosition();
-    returnToFlight();
     pop();
   }
   else if (state === `sunDeath`) {
@@ -286,7 +276,6 @@ function draw() {
     image(sun,375,375,400,400);
     displaySunDeathText();
     resetShipPosition();
-    restartSimulation();
     pop();
   }
 }
@@ -329,6 +318,7 @@ push();
   function keyPressed(){
     if(state ===`title`){
       state = `choice`;
+      console.log
       fadeIn=0;
     }
   }
@@ -503,9 +493,11 @@ for (let i = 0; i < 2000; i++) {
     if (state === `choice` && mouseX < 375){
     state = `home`;
       fadeIn=0;
+      restartSimulation();
   } else if (state === `choice` && mouseX > 375) {
     state = `instructions`;
     fadeIn=0;
+    startFlight();
 }
 }
 
@@ -614,15 +606,13 @@ function startFlight(){
 
 //brings simulation back to title state
 function restartSimulation(){
-  if (state === `home` || `earth` || `sun`){
     setTimeout(function(){state = `title`; resetShipPosition();}, time)
-}
 }
 
 //returns pilot from planet view to flight mode
 function returnToFlight(){
-  if (state === `saturn` || `uranus` || `venus` || `mercury` || `jupiter` || `neptune` || `mars`){
-    setTimeout(function(){state = `flight simulation` || resetShipPosition();}, time)
+  if (state === `saturn` ||state === `uranus` ||state === `venus` ||state === `mercury` ||state === `jupiter` ||state === `neptune` ||state === `mars`){
+    setTimeout(function(){state = `flight simulation`; resetShipPosition();}, time)
 }
 }
 
@@ -783,11 +773,13 @@ function checkIfOnPlanet() {
 if (d < saucerPiece1.size/2 + 50/2){
   state = `earth`;
   fadeIn=0;
+  restartSimulation();
 }
   //saturn
   let saturnDist = dist(saucerPiece1.x,saucerPiece1.y,595,140);
 if (saturnDist < saucerPiece1.size/2 + 66/2){
   state = `saturn`;
+  returnToFlight();
   fadeIn=0;
 }
 //uranus
@@ -795,42 +787,49 @@ let uranusDist = dist(saucerPiece1.x,saucerPiece1.y,350,70);
 if (uranusDist < saucerPiece1.size/2 + 54/2){
 state = `uranus`;
 fadeIn=0;
+returnToFlight();
 }
 //venus
 let venusDist = dist(saucerPiece1.x,saucerPiece1.y,450,250);
 if (venusDist < saucerPiece1.size/2 + 30/2){
 state = `venus`;
 fadeIn=0;
+returnToFlight();
 }
 //mercury
 let mercuryDist = dist(saucerPiece1.x,saucerPiece1.y,475,340);
 if (mercuryDist < saucerPiece1.size/2 + 24/2){
 state = `mercury`;
 fadeIn=0;
+returnToFlight();
 }
 //jupiter
 let jupiterDist = dist(saucerPiece1.x,saucerPiece1.y,190,500);
 if (jupiterDist < saucerPiece1.size/2 + 79/2){
 state = `jupiter`;
 fadeIn=0;
+returnToFlight();
 }
 //neptune
 let neptuneDist = dist(saucerPiece1.x,saucerPiece1.y,55,280);
 if (neptuneDist < saucerPiece1.size/2 + 58/2){
 state = `neptune`;
 fadeIn=0;
+returnToFlight();
 }
 //mars
 let marsDist = dist(saucerPiece1.x,saucerPiece1.y,550,445);
 if (marsDist < saucerPiece1.size/2 + 40/2){
 state = `mars`;
 fadeIn=0;
+returnToFlight();
 }
 //sun
 let sunDist = dist(saucerPiece1.x,saucerPiece1.y,375,375);
 if (sunDist < saucerPiece1.size/2 + 140/2){
 state = `sunDeath`;
 fadeIn=0;
+restartSimulation();
 }
 }
 
