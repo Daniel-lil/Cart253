@@ -171,7 +171,6 @@ function draw() {
   }
   else if (state ===`flight simulation`){
     push();
-    resetShipPosition();
     background(black);
     displayStatic();
     displayPlanets();
@@ -198,6 +197,7 @@ function draw() {
     imageMode(CENTER)
     image(earth,375,375,420,420);
     displayEarthText();
+    resetShipPosition();
     restartSimulation();
     pop();
   }
@@ -208,6 +208,7 @@ function draw() {
     imageMode(CENTER)
     image(saturn,375,375,450,450);
     displaySaturnText();
+    resetShipPosition();
     returnToFlight();
     pop();
   }
@@ -218,6 +219,7 @@ function draw() {
     imageMode(CENTER)
     image(uranus,375,375,375,375);
     displayUranusText();
+    resetShipPosition();
     returnToFlight();
     pop();
   }
@@ -228,6 +230,7 @@ function draw() {
     imageMode(CENTER)
     image(venus,375,375,450,450);
     displayVenusText();
+    resetShipPosition();
     returnToFlight();
     pop();
   }
@@ -238,6 +241,7 @@ function draw() {
     imageMode(CENTER)
     image(mercury,375,375,420,420);
     displayMercuryText();
+    resetShipPosition();
     returnToFlight();
     pop();
   }
@@ -248,6 +252,7 @@ function draw() {
     imageMode(CENTER)
     image(jupiter,375,375,450,450);
     displayJupiterText();
+    resetShipPosition();
     returnToFlight();
     pop();
   }
@@ -258,6 +263,7 @@ function draw() {
     imageMode(CENTER)
     image(neptune,375,375,450,450);
     displayNeptuneText();
+    resetShipPosition();
     returnToFlight();
     pop();
   }
@@ -268,6 +274,7 @@ function draw() {
     imageMode(CENTER)
     image(mars,375,375,375,375);
     displayMarsText();
+    resetShipPosition();
     returnToFlight();
     pop();
   }
@@ -278,6 +285,7 @@ function draw() {
     imageMode(CENTER)
     image(sun,375,375,400,400);
     displaySunDeathText();
+    resetShipPosition();
     restartSimulation();
     pop();
   }
@@ -607,7 +615,7 @@ function startFlight(){
 //brings simulation back to title state
 function restartSimulation(){
   if (state === `home` || `earth` || `sun`){
-    setTimeout(function(){state = `title`;}, time)
+    setTimeout(function(){state = `title`; resetShipPosition();}, time)
 }
 }
 
@@ -835,7 +843,7 @@ strokeWeight(4);
   textStyle(BOLD);
   fill(black);
   textAlign(CENTER,CENTER);
-  text(`Welcome to`,375 ,100 );
+  text(`Returned to`,375 ,100 );
 pop();
 
 push();
@@ -1033,92 +1041,28 @@ push();
 pop();
 }
 
+//puts ship back in starting
 function resetShipPosition(){
+saucerPiece1.x = 375
+saucerPiece1.y = 680
 
-let saucerPiece1 = {
-  x: 375,
-  y: 680,
-  size: 75,
-  vx: 0,
-  vy: 0,
-  speed: 3,
-  fill: 150
-  }
+saucerPiece2.x = 375
+saucerPiece2.y = 680
 
-let saucerPiece2 = {
-  x: 375,
-  y: 680,
-  size: 32,
-  vx: 0,
-  vy: 0,
-  speed: 3,
-  fill: {
-    r: 0,
-    g: 255,
-    b: 0
-  }
-}
 
-  let saucerPiece3 = {
-      x: 369,
-      y: 705,
-      w: 7,
-      h: 12,
-      corner: 20,
-      vx: 0,
-      vy: 0,
-      speed: 3,
-      fill: {
-        r: 0,
-        g: 255,
-        b: 0
-      }
-}
-      let saucerPiece4 = {
-          x: 369,
-          y: 650,
-          w: 7,
-          h: 12,
-          corner: 20,
-          vx: 0,
-          vy: 0,
-          speed: 3,
-          fill: {
-            r: 0,
-            g: 255,
-            b: 0
-          }
+saucerPiece3.x = 369
+saucerPiece3.y = 705
 
-        }
-              let saucerPiece5 = {
-                  x: 398,
-                  y: 674,
-                  w: 12,
-                  h: 7,
-                  corner: 20,
-                  vx: 0,
-                  vy: 0,
-                  speed: 3,
-                  fill: {
-                    r: 0,
-                    g: 255,
-                    b: 0
-                  }
+saucerPiece4.x = 369
+saucerPiece4.y = 650
 
-                }
-                      let saucerPiece6 = {
-                          x: 345,
-                          y: 674,
-                          w: 12,
-                          h: 7,
-                          corner: 20,
-                          vx: 0,
-                          vy: 0,
-                          speed: 3,
-                          fill: {
-                            r: 0,
-                            g: 255,
-                            b: 0
-                          }
-}
+
+saucerPiece5.x = 398
+saucerPiece5.y = 674
+
+saucerPiece6.x = 345
+saucerPiece6.y = 674
+
+moveSaucer();
+handleInput();
 }
