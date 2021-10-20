@@ -327,7 +327,6 @@ push();
     if(state ===`title`){
       state = `choice`;
       fadeIn=0;
-      fc_Simulator_Song.loop();
       trymusic();
     }
   }
