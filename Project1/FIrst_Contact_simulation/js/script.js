@@ -5,7 +5,7 @@ Daniel Little
 
 "use strict";
 
-//stating names of planets
+//declaring names of planets
 let earth;
 let saturn;
 let uranus;
@@ -15,6 +15,9 @@ let jupiter;
 let neptune;
 let mars;
 let sun;
+
+//declaring name of song
+let fc_Simulator_Song;
 
 //define amount of time for timer (5 seconds)
 let time = 5000;
@@ -126,13 +129,16 @@ function preload() {
 //preloading planet images
   earth = loadImage ('assets/images/earth.png');
   saturn = loadImage ('assets/images/saturn.png');
-  uranus = loadImage ('assets/images/uranus.png')
+  uranus = loadImage ('assets/images/uranus.png');
   venus = loadImage ('assets/images/venus.png');
   mercury = loadImage ('assets/images/mercury.png');
-  jupiter = loadImage ('assets/images/jupiter.png')
+  jupiter = loadImage ('assets/images/jupiter.png');
   neptune = loadImage ('assets/images/neptune.png');
-  mars = loadImage ('assets/images/mars.png')
-  sun = loadImage ('assets/images/sun.png')
+  mars = loadImage ('assets/images/mars.png');
+  sun = loadImage ('assets/images/sun.png');
+
+  //preloading song
+  fc_Simulator_Song = loadSound(`assets/sounds/FC_Simulator music.mp3`);
 }
 
 /**
@@ -140,6 +146,8 @@ creates canvas
 */
 function setup() {
 createCanvas(750, 750);
+
+
 }
 
 /**
@@ -318,10 +326,17 @@ push();
   function keyPressed(){
     if(state ===`title`){
       state = `choice`;
-      console.log
       fadeIn=0;
+      fc_Simulator_Song.loop();
     }
   }
+
+//check if music is playing + play if its not
+  function trymusic(){
+    if(!fc_Simulator_Song.isPlaying()){
+      fc_Simulator_Song.loop();
+  }
+}
 
 function drawAlienPic() {
   push();
