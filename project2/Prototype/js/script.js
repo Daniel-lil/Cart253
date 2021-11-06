@@ -14,7 +14,7 @@ let amplitude;
 preload song
 */
 function preload() {
-song = loadSound(`assets/sounds/song.mp3`);
+song = loadSound(`assets/sounds/Song.mp3`);
 }
 
 /**
