@@ -333,7 +333,7 @@ push();
 
 //check if music is playing + play if its not
   function trymusic(){
-    if(!fc_Simulator_Song.isPlaying()){
+    if (!fc_Simulator_Song.isPlaying()){
       fc_Simulator_Song.loop();
   }
 }
