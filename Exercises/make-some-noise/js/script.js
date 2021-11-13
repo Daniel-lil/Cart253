@@ -32,6 +32,8 @@ function draw() {
 background(0);
 playNotes();
 harmony.buttonDisplay();
+harmony.mousePressed();
+console.log(this.toggleState);
 harmony.playHarmony();
 }
 
