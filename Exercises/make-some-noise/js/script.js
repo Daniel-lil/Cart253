@@ -15,7 +15,9 @@ let harmonySynth;
 let harmony;
 
 /**
-Description of setup
+-creates and sets canvas size
+-declares variable names for each synth
+-calls conctructor from harmony class
 */
 function setup() {
 createCanvas(windowWidth, windowHeight);
@@ -26,18 +28,20 @@ userStartAudio();
 }
 
 /**
-
+-sets background colour to black
+-plays notes from a minor scale when keys are pressed (A-K and I)
+-displays button and text
+-plays synth and harmony if it's turned on
 */
 function draw() {
 background(0);
 playNotes();
 harmony.buttonDisplay();
 harmony.mousePressed();
-console.log(this.toggleState);
 harmony.playHarmony();
 }
 
-//plays notes
+//plays notes when specific keys are pressed
 function playNotes() {
 if (keyIsDown(65)){
   synth.noteAttack(`A4`,1);

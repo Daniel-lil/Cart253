@@ -1,3 +1,4 @@
+//declares attributes for the button and the harmonizer
 class Harmony {
 constructor(x,y,width,height){
 this.x = windowWidth/2;
@@ -7,6 +8,7 @@ this.height = 350;
 this.toggleState = 0;
 }
 
+//plays a 6th under each note as a harmony
 playHarmony() {
 if (keyIsDown(65) && this.toggleState === 1){
   harmonySynth.noteAttack(`C3`, 1);
@@ -29,6 +31,7 @@ harmonySynth.noteAttack(`C4`, 1);
 }
 }
 
+//displays explanation text and the button to turn on the harmonizer
 buttonDisplay(){
   push();
   rectMode(CENTER);
@@ -49,6 +52,7 @@ buttonDisplay(){
     pop();
 }
 
+//changes toggle state from 0 to 1 if the mouse is clicked over the button
 mousePressed(){
 if (mouseX < windowWidth/2 + 175 && mouseX > windowWidth/2 - 175 && mouseY > windowHeight/2 -175 && mouseY < windowHeight/2 + 175 && this.toggleState === 0){
   this.toggleState = 1;
