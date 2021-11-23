@@ -36,13 +36,14 @@ background(0);
 //gets amplitude data and maps it to a bigger scale for the shapes
 let level = amplitude.getLevel();
 let size = map(level, 0, 1, 0, 4000);
+console.log(size);
 //draws shapes
-ellipse(windowWidth/3, windowHeight/3, size,);
-ellipse(windowWidth/3*2, windowHeight/3, size,);
-ellipse(windowWidth/3*2, windowHeight/3*2, size,);
-ellipse(windowWidth/3, windowHeight/3*2, size,);
-ellipse(windowWidth/2, windowHeight/2, size,);
-fill(0);
+ellipse(width/3, height/3, size,);
+ellipse(width/3*2, height/3, size,);
+ellipse(width/3*2, height/3*2, size,);
+ellipse(width/3, height/3*2, size,);
+ellipse(width/2, height/2, size,);
+noFill();
 stroke(255);
 }
 
