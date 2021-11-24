@@ -26,6 +26,7 @@ let cubeColour;
 let cube;
 let circle;
 let rectangle;
+let tri;
 let backgroundColour;
 let state;
 
@@ -49,7 +50,8 @@ function setup() {
   circle = new Circle();
   cube = new Cube();
   rectangle = new Rectangle();
-  state = `rectangleVisuals`;
+  tri = new Triangle();
+  state = `triangleVisuals`;
 }
 
 /**
@@ -77,6 +79,8 @@ if (state === `circleVisuals`){
 circle.display();
 } else if(state === `rectangleVisuals`){
 rectangle.display();
+} else if (state === `triangleVisuals`){
+  tri.display();
 }
 
 //displays main 3d Shape if key A is pressed
@@ -85,12 +89,18 @@ cube.display();
 }
 }
 
-//if you press 1 it triggers circle patterns, 2 triggers rectangle patterns
+/**
+allows different computer keys controls over visuals
+-1 triggers circle patterns
+-2 triggers rectangle patterns
+*/
 function keyPressed(){
   if(keyCode === 50){
     state = `rectangleVisuals`;
   } else if(keyCode === 49){
     state = `circleVisuals`;
+  } else if (keyCode === 51){
+    state = `triangleVisuals`;
   }
 }
 
