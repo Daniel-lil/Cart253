@@ -48,7 +48,7 @@ song = loadSound(`assets/sounds/Song.mp3`);
 function setup() {
   let cnv = createCanvas(windowWidth,windowHeight, WEBGL);
   cnv.mouseClicked(playOrPauseSong);
-  fft = new p5.FFT();
+  fft = new p5.FFT(.3);
   circle = new Circle();
   cube = new Cube();
   rectangle = new Rectangle();
