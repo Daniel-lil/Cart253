@@ -4,6 +4,8 @@ Daniel Little
 
 This is a progress report for the audio visualizer for my
 final CART 253 project
+-use keys 1,2 and 3 on your keyboard to change patterns
+-press A key for cool background or tap it for flashing lights
 */
 
 "use strict";
@@ -21,7 +23,7 @@ let levels;
 let ampLow;
 let ampHigh;
 let cubeSize;
-let circleSize;
+let shapeSize;
 let cubeColour;
 let cube;
 let circle;
@@ -51,7 +53,7 @@ function setup() {
   cube = new Cube();
   rectangle = new Rectangle();
   tri = new Triangle();
-  state = `triangleVisuals`;
+  state = `circleVisuals`;
 }
 
 /**
@@ -65,28 +67,31 @@ function draw() {
 //storing fft data in variables to use for controlling shapes+colours and also mapping fft data ranges so they suit my needs better
 levels = fft.analyze();
 ampLow = fft.getEnergy(30, 500);
-circleSize = map(ampLow, 0, 255, 1, 1275);
-ampHigh = fft.getEnergy(600, 3000);
-backgroundColour = map(ampHigh, 0, 255, -120, 255);
+shapeSize = map(ampLow, 0, 255, 1, 1275);
+ampHigh = fft.getEnergy(700, 3000);
+backgroundColour = map(ampHigh, 0, 255, -80, 255);
 cubeSize = map(ampLow, 0, 255, -100, 3);
 cubeColour = ampHigh;
 
 //setting background colour
 background(backgroundColour/10,backgroundColour/2,backgroundColour);
-
-//if in state circle display circles if in rectangle display rectangles
-if (state === `circleVisuals`){
-circle.display();
-} else if(state === `rectangleVisuals`){
-rectangle.display();
-} else if (state === `triangleVisuals`){
-  tri.display();
-}
-
-//displays main 3d Shape if key A is pressed
+//tells program which patterns to display during each state
+states();
+//displays main 3d Shape if key A is down
 if (keyIsDown (65)){
 cube.display();
 }
+}
+
+function states(){
+  //tells program which patterns to display during each state
+  if (state === `circleVisuals`){
+  circle.display();
+  } else if(state === `rectangleVisuals`){
+  rectangle.display();
+  } else if (state === `triangleVisuals`){
+    tri.display();
+  }
 }
 
 /**
