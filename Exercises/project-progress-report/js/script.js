@@ -67,7 +67,7 @@ function draw() {
 //storing fft data in variables to use for controlling shapes+colours and also mapping fft data ranges so they suit my needs better
 levels = fft.analyze();
 ampLow = fft.getEnergy(30, 500);
-shapeSize = map(ampLow, 0, 255, 1, 1275);
+shapeSize = map(ampLow, 0, 255, 1, 600);
 ampHigh = fft.getEnergy(700, 3000);
 backgroundColour = map(ampHigh, 0, 255, -80, 255);
 cubeSize = map(ampLow, 0, 255, -100, 3);
